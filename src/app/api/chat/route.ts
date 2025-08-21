@@ -1,5 +1,10 @@
 import OpenAI from "openai";
+import Anthropic from "@anthropic-ai/sdk";
 import { OpenAIStream, StreamingTextResponse } from "ai";
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,

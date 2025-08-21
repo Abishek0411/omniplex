@@ -59,6 +59,9 @@ export const MODELS = [
   { label: "gpt-3.5-turbo-0301", value: "gpt-3.5-turbo-0301" },
   { label: "gpt-3.5-turbo-0125", value: "gpt-3.5-turbo-0125" },
   { label: "gpt-3.5-turbo", value: "gpt-3.5-turbo" },
+  { label: "Claude 3 Haiku", value: "claude-3-haiku-20240307" },
+  { label: "Claude 3 Sonnet", value: "claude-3-sonnet-20240229" },
+  { label: "Claude 3 Opus", value: "claude-3-opus-20240229" },
 ];
 
 export const PLUGINS = [

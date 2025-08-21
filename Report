@@ -1,0 +1,54 @@
+1) npm install
+Error:
+npm error code ERESOLVE
+npm error ERESOLVE unable to resolve dependency tree
+npm error
+npm error While resolving: omniplex@1.0.0
+npm error Found: svelte@5.38.1
+npm error node_modules/svelte
+npm error   peer svelte@"^4.0.0 || ^5.0.0-next.0" from @sveltejs/kit@2.31.1
+...
+
+Note:
+ -This is an NPM dependency conflict. NPM warns about the peer dependency resolution. 
+ -The project has Svelte 5.38.1 installed. @vercel/speed-insights@1.0.10 lists Svelte ^4 as a peer dependency (but marked as peerOptional).
+ -So NPM is refusing to install since it sees a mismatch (even though the project may still run fine).
+ 
+Solution: 
+	rm -rf node_modules package-lock.json
+	npm cache clean --force
+	npm install --legacy-peer-deps
+Therefore, resolved dependency conflict between Svelte v5 and @vercel/speed-insights by installing with --legacy-peer-deps.
+
+2) npm run dev
+Error:
+Browserslist: caniuse-lite is outdated. Please run: npx update-browserslist-db@latest Why you should do it regularly: https://github.com/browserslist/update-db#readme ○ Compiling / ... (node:11669) [DEP0040] DeprecationWarning: The punycode module is deprecated. Please use a userland alternative instead. (Use node --trace-deprecation ... to show where the warning was created) ✓ Compiled / in 7.5s (3307 modules) redux-persist failed to create sync storage. falling back to noop storage.
+
+Console gave an error:
+Unhandled Runtime Error
+FirebaseError: Firebase: Error (auth/invalid-api-key).
+
+Note:
+ -Warning about redux-persist fallback → app still works, no fix needed.
+ -Browserslist outdated → optional update.
+ -In src/app/AuthWrapper.tsx, the app calls getAuth() (Firebase Auth SDK). Without valid Firebase config, getAuth() throws → blank screen.
+
+Solution:
+	npm install @anthropic-ai/sdk	
+	Fixed blank screen caused by missing Firebase config. Added .env.local with Firebase keys to allow getAuth() initialization.
+	Fixed auth/invalid-api-key error by exporting initialized auth from firebaseConfig.js and using it in AuthWrapper.tsx instead of calling getAuth() without app reference.
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+my-awesome-project-be659
+
